@@ -13,6 +13,13 @@ public:
 
     void setName(const std::string& fname, const std::string& lname);
     void setTestScore(int testScore);
+    bool operator==(const Student& rhs) const;
+    bool operator!=(const Student& rhs) const;
+    bool operator>=(const Student& rhs) const;
+    bool operator<=(const Student& rhs) const;
+    bool operator>(const Student& rhs) const;
+    bool operator<(const Student& rhs) const;
+    friend std::istream& operator>>(std::istream& lhs, Student& rhs);
 
 private:
     std::string _firstName;
@@ -21,5 +28,6 @@ private:
     char _grade;
 };
 
+std::ostream& operator<<(std::ostream& lhs, const Student& rhs);
 void printFullName(const Student& s);
 void printTestResults(const Student& s);

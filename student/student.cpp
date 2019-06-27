@@ -51,6 +51,51 @@ void Student::setTestScore(int testScore) {
     }
 }
 
+bool Student::operator==(const Student& rhs) const {
+    return _firstName == rhs._firstName && _lastName == rhs._lastName;
+}
+
+bool Student::operator!=(const Student& rhs) const {
+    return !(*this == rhs);
+}
+
+bool Student::operator>=(const Student& rhs) const {
+    return !(*this < rhs);
+}
+
+bool Student::operator<=(const Student& rhs) const {
+    return !(*this > rhs); 
+}
+
+bool Student::operator>(const Student& rhs) const {
+    return (*this != rhs) && !(*this < rhs);
+}
+
+bool Student::operator<(const Student& rhs) const {
+    if(_lastName < rhs._lastName) {
+        return true;
+    } else if(_firstName < rhs._firstName) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+std::ostream& operator<<(std::ostream& lhs, const Student& rhs) {
+    lhs << rhs.firstName() << " " << rhs.lastName() << " " << rhs.testScore() << " " << rhs.testGrade() << endl;
+}
+
+std::istream& operator>>(std::istream& lhs, Student& rhs) {
+    int testScore;
+    string fName;
+    string lName;
+    //lhs >> rhs._firstName >> rhs._lastName >> testScore;
+    lhs >> fName >> lName >> testScore;
+    rhs.setName(fName, lName);
+    rhs.setTestScore(testScore);
+    return lhs;
+}
+
 void printFullName(const Student& s) {
     cout << s.firstName() << " " << s.lastName() << endl;
 }
@@ -61,7 +106,8 @@ void printTestResults(const Student& s) {
 
 void printArray(Student* start, Student* end) {
     for(Student* cur=start; cur != end; cur++) {
-        cout << cur->firstName() << " " << cur->lastName() << " " << cur->testScore() << " " << cur->testGrade() << endl;
+        //cout << cur->firstName() << " " << cur->lastName() << " " << cur->testScore() << " " << cur->testGrade() << endl;
+        cout << *cur;
     }
 }
 
@@ -79,7 +125,8 @@ int main() {
         string lName;
         int tScore;
         cout << "Enter First Name, Last Name, and test score \n";
-        cin >> fName >> lName >> tScore;
+        //cin >> fName >> lName >> tScore;
+        cin >> students[i];
         students[i].setName(fName, lName);
         students[i].setTestScore(tScore);
     }
