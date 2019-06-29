@@ -6,6 +6,7 @@ class Student {
 public:
     Student();
     Student(std::string fname, std::string lname, int score);
+    Student(const Student& src);
     std::string firstName() const;
     std::string lastName() const;
     int testScore() const;
@@ -13,6 +14,7 @@ public:
 
     void setName(const std::string& fname, const std::string& lname);
     void setTestScore(int testScore);
+    Student& operator=(const Student& rhs);
     bool operator==(const Student& rhs) const;
     bool operator!=(const Student& rhs) const;
     bool operator>=(const Student& rhs) const;
