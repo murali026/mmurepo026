@@ -33,3 +33,4 @@ private:
 std::ostream& operator<<(std::ostream& lhs, const Student& rhs);
 void printFullName(const Student& s);
 void printTestResults(const Student& s);
+void swap(Student& a, Student& b);

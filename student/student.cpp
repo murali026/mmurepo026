@@ -89,7 +89,7 @@ bool Student::operator>(const Student& rhs) const {
 bool Student::operator<(const Student& rhs) const {
     if(_lastName < rhs._lastName) {
         return true;
-    } else if(_firstName < rhs._firstName) {
+    } else if(_lastName == rhs._lastName && _firstName < rhs._firstName) {
         return true;
     } else {
         return false;
@@ -131,6 +131,37 @@ void printArray(Student* start, Student* end) {
     }
 }
 
+void swap(Student& a, Student& b) {
+    Student c = a;
+    a = b;
+    b = c;
+}
+
+void swap(Student* a, Student* b) {
+    Student* c = a;
+    a = b;
+    b = c;
+}
+
+void isort(Student *start, Student *end) {
+    for(Student *cur = start; cur != end; ++cur) {
+        int c1 = 1;
+        cout << __func__ << ":" << __LINE__ << ": ExternalCount:"<< c1 << endl;
+        Student *x = cur;
+        Student *y = cur;
+        --x;
+        while((y != start) && (*y < *x)) {
+            int c2 = 1;
+            cout << __func__ << ":" << __LINE__ << ": InternalCount:"<< c2 << endl;
+            swap(*y, *x);
+            --x;
+            --y;
+            c2++;
+        }
+        c1++;
+    }
+}
+
 int main() {
     Student s;
     s.setName("Murali", "M");
@@ -150,6 +181,8 @@ int main() {
         //students[i].setTestScore(tScore);
         cin >> students[i];
     }
+    printArray(students, students+classSize);
+    isort(students, students+classSize);
     printArray(students, students+classSize);
     return 1;
 }
