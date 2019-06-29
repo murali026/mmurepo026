@@ -33,4 +33,9 @@ private:
 std::ostream& operator<<(std::ostream& lhs, const Student& rhs);
 void printFullName(const Student& s);
 void printTestResults(const Student& s);
-void swap(Student& a, Student& b);
+template <typename T>
+void swap(T* a, T* b) {
+    T *c = a;
+    a = b;
+    b = c;
+};

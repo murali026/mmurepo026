@@ -131,18 +131,6 @@ void printArray(Student* start, Student* end) {
     }
 }
 
-void swap(Student& a, Student& b) {
-    Student c = a;
-    a = b;
-    b = c;
-}
-
-void swap(Student* a, Student* b) {
-    Student* c = a;
-    a = b;
-    b = c;
-}
-
 void isort(Student *start, Student *end) {
     for(Student *cur = start; cur != end; ++cur) {
         int c1 = 1;
