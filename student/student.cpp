@@ -103,6 +103,13 @@ std::ostream& operator<<(std::ostream& lhs, const Student& rhs) {
         << rhs.testGrade() << endl;
 }
 
+/*std::ostream& operator<<(std::ostream& lhs, const Student* rhs) {
+    lhs << rhs->firstName() << " "
+        << rhs->lastName() << " "
+        << rhs->testScore() << " "
+        << rhs->testGrade() << endl;
+}*/
+
 std::istream& operator>>(std::istream& lhs, Student& rhs) {
     int testScore;
     string fName;
@@ -124,32 +131,7 @@ void printTestResults(const Student& s) {
     cout << s.testScore() << " " << s.testGrade() << endl;
 }
 
-void printArray(Student* start, Student* end) {
-    for(Student* cur=start; cur != end; cur++) {
-        //cout << cur->firstName() << " " << cur->lastName() << " " << cur->testScore() << " " << cur->testGrade() << endl;
-        cout << *cur;
-    }
-}
-
-void isort(Student *start, Student *end) {
-    for(Student *cur = start; cur != end; ++cur) {
-        int c1 = 1;
-        cout << __func__ << ":" << __LINE__ << ": ExternalCount:"<< c1 << endl;
-        Student *x = cur;
-        Student *y = cur;
-        --x;
-        while((y != start) && (*y < *x)) {
-            int c2 = 1;
-            cout << __func__ << ":" << __LINE__ << ": InternalCount:"<< c2 << endl;
-            swap(*y, *x);
-            --x;
-            --y;
-            c2++;
-        }
-        c1++;
-    }
-}
-
+/*
 int main() {
     Student s;
     s.setName("Murali", "M");
@@ -169,8 +151,8 @@ int main() {
         //students[i].setTestScore(tScore);
         cin >> students[i];
     }
-    printArray(students, students+classSize);
+    printSequence(students, students+classSize);
     isort(students, students+classSize);
-    printArray(students, students+classSize);
+    printSequence(students, students+classSize);
     return 1;
-}
+}*/

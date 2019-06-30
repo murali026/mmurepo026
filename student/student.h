@@ -1,5 +1,8 @@
 #include<iostream>
 #include<string>
+#include"isort.h"
+#include"printSequence.h"
+#include"swap.h"
 using namespace std;
 
 class Student {
@@ -33,9 +36,3 @@ private:
 std::ostream& operator<<(std::ostream& lhs, const Student& rhs);
 void printFullName(const Student& s);
 void printTestResults(const Student& s);
-template <typename T>
-void swap(T* a, T* b) {
-    T *c = a;
-    a = b;
-    b = c;
-};
