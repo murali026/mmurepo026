@@ -19,8 +19,14 @@ int main() {
     printSequence(array, array+totalNumbers);
     cout << "Student Details Before Sorting:" << endl;
     printSequence(students, students+classSize);
-    isort(students, students+classSize);
-    isort(array, array+totalNumbers);
+    Less<Student> isLess;
+    Less<int> isLessInt;
+    Greater<Student> isGreater;
+    Greater<int> isGreaterInt;
+    isort(students, students+classSize, isGreater);
+    isort(array, array+totalNumbers, isGreaterInt);
+    //isort(students, students+classSize, isLess);
+    //isort(array, array+totalNumbers, isLessInt);
     cout << "Array Details After Soring:" << endl;
     printSequence(array, array+totalNumbers);
     cout << "Student Details After Sorting:" << endl;
