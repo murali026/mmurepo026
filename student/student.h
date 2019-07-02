@@ -1,7 +1,6 @@
 #include<iostream>
 #include<string>
 #include"isort.h"
-#include"printSequence.h"
 #include"swap.h"
 using namespace std;
 

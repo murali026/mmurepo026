@@ -7,7 +7,7 @@ template <class Iter> void printSequence(Iter begin, Iter end);
 template <class Iter> void printSequence(Iter begin, Iter end) {
     while(begin != end) {
         std::cout << *begin;
-        std::cout << ' ' << std::endl;
+        std::cout << ' ';
         ++begin;
     }
 };

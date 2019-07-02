@@ -1,4 +1,6 @@
 #include"student.h"
+#include"isort.h"
+#include"printSequence.h"
 
 Student::Student():
     _firstName(""),

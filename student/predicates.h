@@ -14,5 +14,4 @@ struct Greater {
         return a > b;
     }
 };
-
 #endif
