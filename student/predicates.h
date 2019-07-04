@@ -14,4 +14,12 @@ struct Greater {
         return a > b;
     }
 };
+
+template <class T, class Predicate>
+bool isReflexivelyEqual(const T&  a, const T& b, Predicate predicate);
+
+template <class T, class Predicate>
+bool isReflexivelyEqual(const T&  a, const T& b, Predicate predicate) {
+    return !predicate(a,b) && !predicate(b,a);
+};
 #endif
