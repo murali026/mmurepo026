@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <map>
+#include<assert.h>
 
 using namespace std;
 
@@ -29,6 +30,27 @@ int check_anagram(string &s1, string& s2) {
         return true;
     }
     return false;
+};
+
+int check_anagram_vector(string &s1, string &s2) {
+    char buf[256];
+    memset(buf, 0, sizeof(buf));
+    for(int i=0; i<s1.length(); ++i) {
+        buf[s1[i]] += 1;
+    }
+    for(int j=0; j<s2.length(); ++j) {
+        if(buf[s2[j]] == 0) {
+            return 0;
+        } else {
+            buf[s2[j]] -= 1;
+        }
+    }
+    for(int i=0;i<s1.length();++i) {
+        if(buf[s1[i]] != 0) {
+            return 0;
+        }
+    }
+    return 1; 
 }
 
 int compare_str(string& s, int groupcount) {
@@ -38,7 +60,8 @@ int compare_str(string& s, int groupcount) {
             string s1(s,i,groupcount);
             string s2(s,j,groupcount);
             //cout << s1 << "," << s2 << endl;
-            count += check_anagram(s1,s2);
+            //count += check_anagram(s1,s2);
+            count += check_anagram_vector(s1,s2);
         }
     }
     return count;
