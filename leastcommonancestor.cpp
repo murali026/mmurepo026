@@ -64,39 +64,52 @@ void getNode(Node* root, int v, map<Node*, pair<int, int>>& myMap, int depth) {
     return;
 }
 
-Node* find_node(Node* root, int v1) {
+Node* find_node(Node* root, int v1, int depth, map<Node*, pair<int,int>>& vm) {
+//Node* find_node(Node* root, int v1) {
     if(root == NULL) {
         return NULL;
     }
+    bool found = false; 
+    Node* cur = NULL;
     if(root->data == v1) {
-        cout << "found node" << endl;
         return root;
     } else {
-        Node* cur = find_node(root->left,v1);
+        cur = find_node(root->left,v1, depth+1, vm);
         if(cur) {
-            cout << "\tParentNode Left:" << root->data << endl;
-            return cur;
-        }
-        cur = find_node(root->right,v1);
-        if(cur) {
-            cout << "\tParentNode Right:" << root->data << endl;
-            return cur;
+            cout << "\tParentNode Left:" << root->data << " depth:" << depth << endl;
+            found = true;
+        } else {
+            cur = find_node(root->right,v1, depth+1, vm);
+            if(cur) {
+                cout << "\tParentNode Right:" << root->data << " depth:" << depth << endl;
+                found = true;
+            }
         }
     }
+    if(found) {
+        if(vm.count(root) == 0) {
+            vm[root] = make_pair(1, depth+1);
+        } else {
+            cout << "Current Depth:" << vm[root].second << "value:" << root->data << "count:" << vm[root].first << endl;
+            cout << "Existing Depth:" << vm[root].second << endl;
+            ++vm[root].first;//make_pair(1, depth+1) << endl;
+            cout << "Current Depth:" << vm[root].second << "value:" << root->data << "count:" << vm[root].first << endl;
+        }
+    }
+    return cur;
 }
 
     Node *lca(Node *root, int v1,int v2) {
         if(root == NULL) {
             return NULL;
         }
-        Node* f = find_node(root, v1);
+        map<Node*, pair<int, int>> myMap;
+        map<Node*, pair<int, int>>::iterator it;
+        Node* f = find_node(root, v1, 0, myMap);
         cout << "FINAL Node:" << f->data << endl;
-        f = find_node(root, v2);
+        f = find_node(root, v2, 0, myMap);
         cout << "FINAL Node:" << f->data << endl;
         return root;
-        map<Node*, pair<int, int>> myMap;
-        map<Node*, pair<int, int>> myMap2;
-        map<Node*, pair<int, int>>::iterator it;
         //map<Node*, pair<int, int>>::iterator it2;
         //add root node with initial depth of 0
         getNode(root, v1, myMap, 0);
